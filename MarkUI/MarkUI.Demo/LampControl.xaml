@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="MarkUI.Demo.LampControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MarkUI.Demo"
+             mc:Ignorable="d" UseLayoutRounding="True"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Canvas x:Name="containerCanvas" Margin="100">
+            <TextBlock Text="Geometry" FontSize="36" Foreground="LightSeaGreen"/>
+            <TextBlock x:Name="GeometryText"  FontSize="36" Text="Geometry" >
+                <TextBlock.Foreground>
+                    <LinearGradientBrush MappingMode="RelativeToBoundingBox" StartPoint="0,0"  EndPoint="1,1">
+                        <GradientStop Color="#FF10EE10" Offset="1"/>
+                        <GradientStop Color="#FEEC7E11" Offset="0"/>
+                    </LinearGradientBrush>
+                </TextBlock.Foreground></TextBlock>
+            <Path Name="myPathShape" Fill="Transparent" >
+                <Path.Data>
+                    <EllipseGeometry x:Name="MyEllipseGeometry" Center="-40,25" RadiusX="50" RadiusY="50" />
+                </Path.Data>
+                <Path.Triggers>
+                    <EventTrigger RoutedEvent="Path.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <PointAnimation  Storyboard.TargetName="MyEllipseGeometry" Storyboard.TargetProperty="Center" From="-40,25" To="200,25" Duration="0:0:3" AutoReverse="true" RepeatBehavior="Forever"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Path.Triggers>
+            </Path>
+        </Canvas>
+
+    </Grid>
+</UserControl>
